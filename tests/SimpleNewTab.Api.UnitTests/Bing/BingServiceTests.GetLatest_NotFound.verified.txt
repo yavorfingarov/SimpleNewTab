@@ -1,0 +1,5 @@
+﻿{
+  Type: HttpRequestException,
+  StatusCode: NotFound 404,
+  Message: Response status code does not indicate success: 404 (Not Found).
+}

@@ -1,0 +1,16 @@
+﻿{
+  Type: ValidationException,
+  Errors: [
+    {
+      PropertyName: Images,
+      ErrorMessage: 'Images' must contain exactly one element.,
+      ErrorCode: PredicateValidator,
+      FormattedMessagePlaceholderValues: {
+        PropertyName: Images
+      }
+    }
+  ],
+  Message:
+Validation failed: 
+ -- Images: 'Images' must contain exactly one element. Severity: Error
+}

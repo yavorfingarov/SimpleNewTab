@@ -1,0 +1,73 @@
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace SimpleNewTab.Api.UnitTests.Data
+{
+    public sealed class DataContextTests
+    {
+        [Fact]
+        public Task Schema()
+        {
+            var dataContext = CreateDataContext();
+
+            var schema = dataContext.Database.GenerateCreateScript();
+
+            return Verify(schema);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetMigrations), true)]
+        public Task UpMigration(string name, string script)
+        {
+            return Verify(script)
+                .UseParameters(name);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetMigrations), false)]
+        public Task DownMigration(string name, string script)
+        {
+            return Verify(script)
+                .UseParameters(name);
+        }
+
+        public static TheoryData<string, string> GetMigrations(bool up)
+        {
+            var theoryData = new TheoryData<string, string>();
+            var dataContext = CreateDataContext();
+            var migrator = dataContext.GetService<IMigrator>();
+            var migrationNames = dataContext.Database.GetMigrations();
+            if (up)
+            {
+                migrationNames = migrationNames.Prepend(null!);
+            }
+            else
+            {
+                migrationNames = migrationNames.Reverse()
+                    .Append(null!);
+            }
+
+            var fromMigration = migrationNames.First();
+            foreach (var targetMigration in migrationNames.Skip(1))
+            {
+                var migrationScript = migrator.GenerateScript(fromMigration, targetMigration);
+                var migrationName = up ? targetMigration : fromMigration;
+
+                theoryData.Add(migrationName, migrationScript);
+
+                fromMigration = targetMigration;
+            }
+
+            return theoryData;
+        }
+
+        private static DataContext CreateDataContext()
+        {
+            var dbContextOptionsBuilder = new DbContextOptionsBuilder<DataContext>();
+            dbContextOptionsBuilder.UseSqlite();
+            var dataContext = new DataContext(dbContextOptionsBuilder.Options);
+
+            return dataContext;
+        }
+    }
+}

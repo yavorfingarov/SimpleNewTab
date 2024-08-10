@@ -1,0 +1,19 @@
+{
+    "name": "Simple New Tab",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "chrome_url_overrides": {
+        "newtab": "new-tab.html"
+    },
+    "options_ui": {
+        "page": "options.html",
+        "open_in_tab": true
+    },
+    "icons": {
+        "128": "icons/browser-scaled.png"
+    },
+    "permissions": [
+        "storage",
+        "favicon"
+    ]
+}

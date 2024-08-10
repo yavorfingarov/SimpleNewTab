@@ -1,0 +1,32 @@
+﻿{
+  ef: [
+    {
+      Type: ReaderExecuted,
+      HasTransaction: false,
+      Text:
+SELECT "i"."Url"
+FROM "ImageMetadata" AS "i"
+ORDER BY "i"."Expiration" DESC
+LIMIT 1
+    },
+    {
+      Type: ReaderExecuted,
+      HasTransaction: false,
+      Parameters: {
+        @p0 (Int64): 1307826892800000000,
+        @p1 (String): latest author,
+        @p2 (String): https://latest-author.com,
+        @p3 (String): https://www.bing.com/quiz/latest,
+        @p4 (String): latest title,
+        @p5 (String): https://www.bing.com/latest-image.jpg
+      },
+      Text:
+INSERT INTO "ImageMetadata" ("Expiration", "Copyright", "CopyrightUrl", "QuizUrl", "Title", "Url")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+    }
+  ],
+  log: {
+    Information: Successfully fetched latest image metadata.,
+    Category: ImageMetadataFetchingJob
+  }
+}

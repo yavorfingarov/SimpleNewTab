@@ -1,0 +1,12 @@
+﻿{
+  Strategy: {
+    MaxRetryAttempts: 5,
+    UseJitter: false,
+    Delay: 01:00:00,
+    Name: Retry
+  },
+  ShouldHandleResults: {
+    Null: true,
+    NotNull: false
+  }
+}

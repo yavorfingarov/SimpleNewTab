@@ -1,0 +1,31 @@
+﻿{
+  Type: ValidationException,
+  Errors: [
+    {
+      PropertyName: Images[0].CopyrightLink,
+      ErrorMessage: 'Copyright Link' must not be empty.,
+      AttemptedValue:  ,
+      ErrorCode: NotEmptyValidator,
+      FormattedMessagePlaceholderValues: {
+        CollectionIndex: 0,
+        PropertyName: Copyright Link,
+        PropertyValue:  
+      }
+    },
+    {
+      PropertyName: Images[0].CopyrightLink,
+      ErrorMessage: 'Copyright Link' must be a valid url.,
+      AttemptedValue:  ,
+      ErrorCode: PredicateValidator,
+      FormattedMessagePlaceholderValues: {
+        CollectionIndex: 0,
+        PropertyName: Copyright Link,
+        PropertyValue:  
+      }
+    }
+  ],
+  Message:
+Validation failed: 
+ -- Images[0].CopyrightLink: 'Copyright Link' must not be empty. Severity: Error
+ -- Images[0].CopyrightLink: 'Copyright Link' must be a valid url. Severity: Error
+}

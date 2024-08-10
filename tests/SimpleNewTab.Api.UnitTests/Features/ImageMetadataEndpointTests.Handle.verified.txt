@@ -1,0 +1,22 @@
+﻿{
+  target: {
+    Expiration: 2024-08-07 20:30 +0,
+    Url: https://www.bing.com/today-image.jpg,
+    Title: today title,
+    QuizUrl: https://www.bing.com/quiz/today,
+    Copyright: today author,
+    CopyrightUrl: https://today-author.com
+  },
+  ef: {
+    Type: ReaderExecuted,
+    HasTransaction: false,
+    Parameters: {
+      @__now_0 (Int64): 1307825123328000000
+    },
+    Text:
+SELECT "i"."Expiration", "i"."Copyright", "i"."CopyrightUrl", "i"."QuizUrl", "i"."Title", "i"."Url"
+FROM "ImageMetadata" AS "i"
+WHERE "i"."Expiration" > @__now_0
+LIMIT 1
+  }
+}

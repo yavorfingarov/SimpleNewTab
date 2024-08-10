@@ -1,0 +1,36 @@
+﻿{
+  imageMetadata: {
+    Url: https://www.bing.com/image.jpg,
+    Title: Test title,
+    QuizUrl: https://www.bing.com/quiz,
+    Copyright: Some author,
+    CopyrightUrl: https://some-author.com
+  },
+  Calls: [
+    {
+      Request: {
+        Uri: https://www.bing.com/latest-image,
+        Headers: {
+          User-Agent: SimpleNewTab.Api/dev,(+http://example.com)
+        }
+      },
+      Response: {
+        Status: 200 OK,
+        ContentHeaders: {
+          Content-Type: application/json; charset=utf-8
+        },
+        ContentStringParsed: {
+          images: [
+            {
+              url: /image.jpg,
+              title: Test title,
+              quiz: /quiz,
+              copyright: Some author,
+              copyrightLink: https://some-author.com
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

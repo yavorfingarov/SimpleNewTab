@@ -1,0 +1,17 @@
+###
+
+@baseUrl = https://localhost:7114
+
+###
+
+GET https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US
+
+###
+
+HEAD {{baseUrl}}/api/health
+
+###
+
+GET {{baseUrl}}/api/image-metadata/latest
+
+###

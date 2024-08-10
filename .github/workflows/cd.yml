@@ -1,0 +1,67 @@
+name: CD
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  DOTNET_VERSION: 8.0.x
+  CSPROJ_PATH: ./src/SimpleNewTab.Api/SimpleNewTab.Api.csproj
+  AZURE_WEBAPP_NAME: SimpleNewTab
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get timestamp
+        run: echo "TIMESTAMP=$(date +'%Y.%m.%d.%H.%M')" >> $GITHUB_ENV
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release --version-suffix ${{ env.TIMESTAMP }}
+
+      - name: Run unit tests
+        run: dotnet test --no-build --configuration Release --filter UnitTests --logger html
+
+      - name: Upload test results
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: TestResults-${{ env.TIMESTAMP }}
+          path: |
+            '**/TestResults'
+            '**/*.received.*'
+
+      - name: Check deploy conditions
+        if: ${{ github.event_name == 'push' }}
+        id: changed-src
+        uses: marceloprado/has-changed-path@v1.0.1
+        with:
+          paths: ./src/SimpleNewTab.Api
+
+      - name: Create package
+        if: ${{ github.event_name == 'push' && steps.changed-src.outputs.changed == 'true' }}
+        run: dotnet publish --no-build --configuration Release --output ./app ${{ env.CSPROJ_PATH }}
+
+      - name: Deploy to Azure App Service
+        if: ${{ github.event_name == 'push' && steps.changed-src.outputs.changed == 'true' }}
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ./app
