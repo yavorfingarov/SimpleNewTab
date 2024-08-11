@@ -76,8 +76,7 @@ namespace SimpleNewTab.Api.UnitTests.Features
             var strategyOptions = (RetryStrategyOptions)strategy.Options!;
             var snapshot = await CreateSnapshot(strategyOptions);
             await Verify(snapshot)
-                .IgnoreMember("ShouldHandle")
-                .IgnoreMember("Randomizer");
+                .IgnoreMembers("ShouldHandle", "Randomizer");
         }
 
         private static async Task<object> CreateSnapshot(RetryStrategyOptions strategyOptions)

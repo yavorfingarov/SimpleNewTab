@@ -17,6 +17,7 @@ namespace SimpleNewTab.Api.UnitTests.Common
 
             return Verify(webApplicationBuilder.Services)
                 .IgnoreMembersThatThrow<InvalidOperationException>()
+                .IgnoreMembers("LocalTimeZone", "TimestampFrequency")
                 .UseParameters(type.Namespace!.Replace("SimpleNewTab.Api.", ""));
         }
 

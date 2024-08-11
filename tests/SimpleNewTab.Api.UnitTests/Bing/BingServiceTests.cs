@@ -8,12 +8,13 @@ namespace SimpleNewTab.Api.UnitTests.Bing
     public class BingServiceTests : IDisposable
     {
         private HttpResponseMessage? _HttpResponseMessage;
+        private readonly BingConfiguration _BingConfiguration;
         private readonly MockHttpClient _HttpClient;
         private readonly BingService _BingService;
 
         public BingServiceTests()
         {
-            var configuration = new BingConfiguration()
+            _BingConfiguration = new BingConfiguration()
             {
                 BaseUrl = "https://www.bing.com",
                 LatestImageRoute = "/latest-image",
@@ -23,9 +24,9 @@ namespace SimpleNewTab.Api.UnitTests.Bing
             _HttpClient = new MockHttpClient(_ => _HttpResponseMessage!);
             _BingService = new BingService(
                 _HttpClient,
-                configuration,
+                _BingConfiguration,
                 new ImageArchiveDtoValidator(),
-                new ImageArchiveDtoMapper(configuration));
+                new ImageArchiveDtoMapper(_BingConfiguration));
         }
 
         [Fact]
@@ -35,7 +36,11 @@ namespace SimpleNewTab.Api.UnitTests.Bing
 
             var imageMetadata = await _BingService.GetLatest(CancellationToken.None);
 
-            await Verify(new { imageMetadata, _HttpClient.Calls });
+            var request = _HttpClient.Calls.Single();
+            var actualUserAgent = request.Request.Headers!.UserAgent.ToString();
+            var expectedUserAgent = $"{Metadata.AppInfo} {_BingConfiguration.UserAgentComment}";
+            Assert.Equal(expectedUserAgent, actualUserAgent);
+            await Verify(imageMetadata);
         }
 
         [Fact]

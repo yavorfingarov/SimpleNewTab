@@ -1,10 +1,7 @@
 ﻿[
   {
     ServiceType: TimeProvider,
-    ImplementationInstance: {
-      LocalTimeZone: GTB Standard Time,
-      TimestampFrequency: 10000000
-    },
+    ImplementationInstance: {},
     IsKeyedService: false
   },
   {

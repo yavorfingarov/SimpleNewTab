@@ -39,7 +39,7 @@ namespace SimpleNewTab.Api.UnitTests.Features
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             var appInfo = response.Headers.GetValues(Metadata.AppInfoHeaderName).Single();
-            Assert.Equal("SimpleNewTab.Api/dev", appInfo);
+            Assert.Equal(Metadata.AppInfo, appInfo);
         }
     }
 }
