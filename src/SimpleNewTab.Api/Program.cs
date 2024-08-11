@@ -34,7 +34,8 @@ namespace SimpleNewTab.Api
 
             var app = builder.Build();
 
-            app.Logger.LogInformation("Application starting. Environment: {Environment}", app.Environment.EnvironmentName);
+            app.Logger.LogInformation("Application starting. Environment: {Environment} / AppInfo: {AppInfo} / Commit: {Commit}",
+                app.Environment.EnvironmentName, Metadata.AppInfo, Metadata.Commit);
 
             app.UseExceptionHandling();
 

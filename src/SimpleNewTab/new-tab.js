@@ -1,6 +1,6 @@
 "use strict";
 
-const metadataUrl = "https://SimpleNewTab.azurewebsites.com/api/image-metadata/latest";
+const metadataUrl = "https://simplenewtab.azurewebsites.net/api/image-metadata/latest";
 
 const iconSize = 24;
 

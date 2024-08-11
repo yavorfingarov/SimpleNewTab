@@ -8,6 +8,7 @@ on:
 
 env:
   DOTNET_VERSION: 8.0.x
+  SRC_PATH: ./src/SimpleNewTab.Api
   CSPROJ_PATH: ./src/SimpleNewTab.Api/SimpleNewTab.Api.csproj
   AZURE_WEBAPP_NAME: SimpleNewTab
 
@@ -17,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get timestamp
-        run: echo "TIMESTAMP=$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
+        run: echo "TIMESTAMP=$(date +'%y.%m.%d.%H%M')" >> $GITHUB_ENV
 
       - name: Check out repository
         uses: actions/checkout@v4
@@ -33,7 +34,7 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --no-restore --configuration Release --version-suffix ${{ env.TIMESTAMP }}
+        run: dotnet build --no-restore --configuration Release /p:Version=${{ env.TIMESTAMP }}
 
       - name: Run unit tests
         run: dotnet test --no-build --configuration Release --filter UnitTests --logger html
@@ -44,15 +45,15 @@ jobs:
         with:
           name: TestResults-${{ env.TIMESTAMP }}
           path: |
-            '**/TestResults'
-            '**/*.received.*'
+            ./tests/**/TestResults/
+            ./tests/**/*.received.*
 
       - name: Check deploy conditions
         if: ${{ github.event_name == 'push' }}
         id: changed-src
         uses: marceloprado/has-changed-path@v1.0.1
         with:
-          paths: ./src/SimpleNewTab.Api
+          paths: ${{ env.SRC_PATH }}
 
       - name: Create package
         if: ${{ github.event_name == 'push' && steps.changed-src.outputs.changed == 'true' }}

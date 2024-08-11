@@ -17,20 +17,25 @@ namespace SimpleNewTab.Api
     public static class Metadata
     {
         public static string AppInfoHeaderName => "X-App-Info";
-        public static string AppInfo { get; }
         public static ProductInfoHeaderValue ProductInfo { get; }
+        public static string AppInfo { get; }
+        public static string? Commit { get; }
 
         static Metadata()
         {
             var assembly = typeof(Metadata).Assembly;
-            var assemblyName = assembly.GetName()?.Name;
+            var assemblyName = assembly.GetName();
+            var appName = assemblyName.Name;
+            var version = assemblyName.Version;
             var informationalVersion = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
-            ArgumentNullException.ThrowIfNull(assemblyName);
+            ArgumentNullException.ThrowIfNull(appName);
+            ArgumentNullException.ThrowIfNull(version);
             ArgumentNullException.ThrowIfNull(informationalVersion);
-            var informationalVersionTokens = informationalVersion.InformationalVersion.Split("-");
-            var build = informationalVersionTokens.ElementAtOrDefault(1) ?? "dev";
-            AppInfo = $"{assemblyName}/{build}";
-            ProductInfo = new ProductInfoHeaderValue(assemblyName, build);
+            var versionString = $"{version.Major:00}.{version.Minor:00}.{version.Build:00}.{version.Revision:0000}";
+            var informationalVersionTokens = informationalVersion.InformationalVersion.Split("+");
+            ProductInfo = new ProductInfoHeaderValue(appName, versionString);
+            AppInfo = ProductInfo.ToString();
+            Commit = informationalVersionTokens.ElementAtOrDefault(1);
         }
     }
 }
