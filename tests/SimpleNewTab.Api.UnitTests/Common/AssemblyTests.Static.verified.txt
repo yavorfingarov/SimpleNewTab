@@ -1,0 +1,4 @@
+﻿[
+  SimpleNewTab.Api.Metadata,
+  SimpleNewTab.Api.Program
+]

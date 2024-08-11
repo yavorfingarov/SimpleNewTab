@@ -1,0 +1,59 @@
+body {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgb(64, 64, 64);
+    width: 720px;
+    margin: 5vh auto;
+}
+
+textarea {
+    font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+    font-size: inherit;
+    color: inherit;
+    padding: 4px 0;
+    resize: vertical;
+    height: 20em;
+    width: 100%;
+    border-bottom: 2px solid rgb(180, 180, 180);
+}
+
+textarea:focus {
+    border-color: rgb(39, 81, 112);
+}
+
+h2 {
+    font-size: 1.4em;
+    margin: 1.5em 0 0.75em 0;
+}
+
+a {
+    color: rgb(39, 81, 112);
+}
+
+#save-button {
+    display: inline-block;
+    background-color: rgb(39, 81, 112);
+    color: rgb(255, 255, 255);
+    border-radius: 6px;
+    margin: 2em 0;
+}
+
+#save-button:hover {
+    opacity: 0.7;
+}
+
+#error {
+    color: rgb(182, 0, 0);
+}
+
+h2,
+.active,
+#save-button {
+    font-weight: 500;
+}
+
+.tab-header,
+#save-button {
+    cursor: pointer;
+    padding: 1em 3em;
+}

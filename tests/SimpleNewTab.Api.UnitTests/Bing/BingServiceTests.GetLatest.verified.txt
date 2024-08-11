@@ -1,0 +1,7 @@
+﻿{
+  Url: https://www.bing.com/image.jpg,
+  Title: Test title,
+  QuizUrl: https://www.bing.com/quiz,
+  Copyright: Some author,
+  CopyrightUrl: https://some-author.com
+}

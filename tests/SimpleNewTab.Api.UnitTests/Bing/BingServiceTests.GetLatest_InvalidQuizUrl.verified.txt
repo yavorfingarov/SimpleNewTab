@@ -1,0 +1,31 @@
+﻿{
+  Type: ValidationException,
+  Errors: [
+    {
+      PropertyName: Images[0].Quiz,
+      ErrorMessage: 'Quiz' must not be empty.,
+      AttemptedValue:  ,
+      ErrorCode: NotEmptyValidator,
+      FormattedMessagePlaceholderValues: {
+        CollectionIndex: 0,
+        PropertyName: Quiz,
+        PropertyValue:  
+      }
+    },
+    {
+      PropertyName: Images[0].Quiz,
+      ErrorMessage: 'Quiz' must be a relative route.,
+      AttemptedValue:  ,
+      ErrorCode: PredicateValidator,
+      FormattedMessagePlaceholderValues: {
+        CollectionIndex: 0,
+        PropertyName: Quiz,
+        PropertyValue:  
+      }
+    }
+  ],
+  Message:
+Validation failed: 
+ -- Images[0].Quiz: 'Quiz' must not be empty. Severity: Error
+ -- Images[0].Quiz: 'Quiz' must be a relative route. Severity: Error
+}

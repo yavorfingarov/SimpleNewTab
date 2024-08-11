@@ -1,0 +1,446 @@
+﻿[
+  {
+    ServiceType: TimeProvider,
+    ImplementationInstance: {},
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceKey: ImageMetadataFetchingJob,
+    ServiceType: ResiliencePipeline,
+    KeyedImplementationFactory: {
+      Type: Func<IServiceProvider, object, ResiliencePipeline>,
+      Target: PollyServiceCollectionExtensions.<>c__3<string>,
+      Method: Polly.ResiliencePipeline AddResiliencePipeline(System.IServiceProvider, System.Object)
+    },
+    IsKeyedService: true
+  },
+  {
+    ServiceType: IOptions<TOptions>,
+    ImplementationType: UnnamedOptionsManager<TOptions>,
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Scoped,
+    ServiceType: IOptionsSnapshot<TOptions>,
+    ImplementationType: OptionsManager<TOptions>,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IOptionsMonitor<TOptions>,
+    ImplementationType: OptionsMonitor<TOptions>,
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: IOptionsFactory<TOptions>,
+    ImplementationType: OptionsFactory<TOptions>,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IOptionsMonitorCache<TOptions>,
+    ImplementationType: OptionsCache<TOptions>,
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: IConfigureOptions<ConfigureResiliencePipelineRegistryOptions<string>>,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, IConfigureOptions<ConfigureResiliencePipelineRegistryOptions<string>>>,
+      Target: OptionsBuilder<ConfigureResiliencePipelineRegistryOptions<string>>.<>c__DisplayClass9_0<IServiceProvider>,
+      Method: Microsoft.Extensions.Options.IConfigureOptions`1[Polly.DependencyInjection.ConfigureResiliencePipelineRegistryOptions`1[System.String]] Configure(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: PollyServiceCollectionExtensions.RegistryMarker<string>,
+    ImplementationInstance: {},
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: IConfigureOptions<TelemetryOptions>,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, IConfigureOptions<TelemetryOptions>>,
+      Target: OptionsBuilder<TelemetryOptions>.<>c__DisplayClass9_0<IServiceProvider>,
+      Method: Microsoft.Extensions.Options.IConfigureOptions`1[Polly.Telemetry.TelemetryOptions] Configure(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: ResiliencePipelineBuilder,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, ResiliencePipelineBuilder>,
+      Target: PollyServiceCollectionExtensions.<>c,
+      Method: Polly.ResiliencePipelineBuilder AddResiliencePipelineBuilder(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: ResiliencePipelineRegistry<string>,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, ResiliencePipelineRegistry<string>>,
+      Target: PollyServiceCollectionExtensions.<>c__6<string>,
+      Method: Polly.Registry.ResiliencePipelineRegistry`1[System.String] AddResiliencePipelineRegistry(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: ResiliencePipelineProvider<string>,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, ResiliencePipelineProvider<string>>,
+      Target: PollyServiceCollectionExtensions.<>c__6<string>,
+      Method: Polly.Registry.ResiliencePipelineProvider`1[System.String] AddResiliencePipelineRegistry(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: IConfigureOptions<ResiliencePipelineRegistryOptions<string>>,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, IConfigureOptions<ResiliencePipelineRegistryOptions<string>>>,
+      Target: OptionsBuilder<ResiliencePipelineRegistryOptions<string>>.<>c__DisplayClass9_0<IServiceProvider>,
+      Method: Microsoft.Extensions.Options.IConfigureOptions`1[Polly.Registry.ResiliencePipelineRegistryOptions`1[System.String]] Configure(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: ILoggerFactory,
+    ImplementationType: LoggerFactory,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: ILogger<TCategoryName>,
+    ImplementationType: Logger<T>,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IConfigureOptions<LoggerFilterOptions>,
+    ImplementationInstance: {
+      Action: {
+        Type: Action<LoggerFilterOptions>,
+        Target: DefaultLoggerLevelConfigureOptions.<>c__DisplayClass0_0,
+        Method: Void .ctor(Microsoft.Extensions.Logging.LoggerFilterOptions)
+      }
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IMeterFactory,
+    ImplementationType: DefaultMeterFactory,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: MetricsSubscriptionManager,
+    ImplementationType: MetricsSubscriptionManager,
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: IStartupValidator,
+    ImplementationType: StartupValidator,
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: IConfigureOptions<StartupValidatorOptions>,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, IConfigureOptions<StartupValidatorOptions>>,
+      Target: OptionsBuilder<StartupValidatorOptions>.<>c__DisplayClass9_0<IOptionsMonitor<MetricsServiceExtensions.NoOpOptions>>,
+      Method: Microsoft.Extensions.Options.IConfigureOptions`1[Microsoft.Extensions.Options.StartupValidatorOptions] Configure(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IConfigureOptions<MetricsServiceExtensions.NoOpOptions>,
+    ImplementationType: MetricsServiceExtensions.SubscriptionActivator,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IMetricListenerConfigurationFactory,
+    ImplementationType: MetricListenerConfigurationFactory,
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: HttpMessageHandlerBuilder,
+    ImplementationType: DefaultHttpMessageHandlerBuilder,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: DefaultHttpClientFactory,
+    ImplementationType: DefaultHttpClientFactory,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IHttpClientFactory,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, IHttpClientFactory>,
+      Target: HttpClientFactoryServiceCollectionExtensions.<>c,
+      Method: System.Net.Http.IHttpClientFactory AddHttpClient(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IHttpMessageHandlerFactory,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, IHttpMessageHandlerFactory>,
+      Target: HttpClientFactoryServiceCollectionExtensions.<>c,
+      Method: System.Net.Http.IHttpMessageHandlerFactory AddHttpClient(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: ITypedHttpClientFactory<TClient>,
+    ImplementationType: DefaultTypedHttpClientFactory<TClient>,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: DefaultTypedHttpClientFactory<TClient>.Cache,
+    ImplementationType: DefaultTypedHttpClientFactory<TClient>.Cache,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IHttpMessageHandlerBuilderFilter,
+    ImplementationType: LoggingHttpMessageHandlerBuilderFilter,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IHttpMessageHandlerBuilderFilter,
+    ImplementationType: MetricsFactoryHttpMessageHandlerFilter,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: HttpClientMappingRegistry,
+    ImplementationInstance: {
+      NamedClientRegistrations: {
+        IImageMetadataService: IImageMetadataService
+      }
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: DefaultHttpClientConfigurationTracker,
+    ImplementationInstance: {
+      InsertDefaultsAfterDescriptor: {
+        ServiceType: IConfigureOptions<TelemetryOptions>,
+        ImplementationInstance: {
+          Name: ,
+          Action: {
+            Type: Action<TelemetryOptions>,
+            Target: ResilienceHttpClientBuilderExtensions.<>c,
+            Method: Void ConfigureHttpServices(Polly.Telemetry.TelemetryOptions)
+          }
+        },
+        IsKeyedService: false
+      }
+    },
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: HttpClient,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, HttpClient>,
+      Target: HttpClientFactoryServiceCollectionExtensions.<>c,
+      Method: System.Net.Http.HttpClient AddHttpClient(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: IImageMetadataService,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, IImageMetadataService>,
+      Target: HttpClientBuilderExtensions.<>c__DisplayClass16_0<IImageMetadataService, BingService>,
+      Method: SimpleNewTab.Api.Common.IImageMetadataService AddTypedClientCore(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IValidateOptions<HttpStandardResilienceOptions>,
+    ImplementationType: HttpStandardResilienceOptionsCustomValidator,
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: IStartupValidator,
+    ImplementationType: StartupValidator,
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: IConfigureOptions<StartupValidatorOptions>,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, IConfigureOptions<StartupValidatorOptions>>,
+      Target: OptionsBuilder<StartupValidatorOptions>.<>c__DisplayClass9_0<IOptionsMonitor<HttpStandardResilienceOptions>>,
+      Method: Microsoft.Extensions.Options.IConfigureOptions`1[Microsoft.Extensions.Options.StartupValidatorOptions] Configure(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IValidateOptions<HttpStandardResilienceOptions>,
+    ImplementationType: HttpStandardResilienceOptionsValidator,
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: IStartupValidator,
+    ImplementationType: StartupValidator,
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: IConfigureOptions<StartupValidatorOptions>,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, IConfigureOptions<StartupValidatorOptions>>,
+      Target: OptionsBuilder<StartupValidatorOptions>.<>c__DisplayClass9_0<IOptionsMonitor<HttpStandardResilienceOptions>>,
+      Method: Microsoft.Extensions.Options.IConfigureOptions`1[Microsoft.Extensions.Options.StartupValidatorOptions] Configure(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceKey: {
+      Name: IImageMetadataService-standard,
+      InstanceName: 
+    },
+    ServiceType: ResiliencePipeline<HttpResponseMessage>,
+    KeyedImplementationFactory: {
+      Type: Func<IServiceProvider, object, ResiliencePipeline<HttpResponseMessage>>,
+      Target: PollyServiceCollectionExtensions.<>c__1<HttpKey, HttpResponseMessage>,
+      Method: Polly.ResiliencePipeline`1[System.Net.Http.HttpResponseMessage] AddResiliencePipeline(System.IServiceProvider, System.Object)
+    },
+    IsKeyedService: true
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: IConfigureOptions<ConfigureResiliencePipelineRegistryOptions<HttpKey>>,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, IConfigureOptions<ConfigureResiliencePipelineRegistryOptions<HttpKey>>>,
+      Target: OptionsBuilder<ConfigureResiliencePipelineRegistryOptions<HttpKey>>.<>c__DisplayClass9_0<IServiceProvider>,
+      Method: Microsoft.Extensions.Options.IConfigureOptions`1[Polly.DependencyInjection.ConfigureResiliencePipelineRegistryOptions`1[Microsoft.Extensions.Http.Resilience.Internal.HttpKey]] Configure(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: PollyServiceCollectionExtensions.RegistryMarker<HttpKey>,
+    ImplementationInstance: {},
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: IConfigureOptions<TelemetryOptions>,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, IConfigureOptions<TelemetryOptions>>,
+      Target: OptionsBuilder<TelemetryOptions>.<>c__DisplayClass9_0<IServiceProvider>,
+      Method: Microsoft.Extensions.Options.IConfigureOptions`1[Polly.Telemetry.TelemetryOptions] Configure(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: ResiliencePipelineRegistry<HttpKey>,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, ResiliencePipelineRegistry<HttpKey>>,
+      Target: PollyServiceCollectionExtensions.<>c__6<HttpKey>,
+      Method: Polly.Registry.ResiliencePipelineRegistry`1[Microsoft.Extensions.Http.Resilience.Internal.HttpKey] AddResiliencePipelineRegistry(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: ResiliencePipelineProvider<HttpKey>,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, ResiliencePipelineProvider<HttpKey>>,
+      Target: PollyServiceCollectionExtensions.<>c__6<HttpKey>,
+      Method: Polly.Registry.ResiliencePipelineProvider`1[Microsoft.Extensions.Http.Resilience.Internal.HttpKey] AddResiliencePipelineRegistry(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: IConfigureOptions<ResiliencePipelineRegistryOptions<HttpKey>>,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, IConfigureOptions<ResiliencePipelineRegistryOptions<HttpKey>>>,
+      Target: OptionsBuilder<ResiliencePipelineRegistryOptions<HttpKey>>.<>c__DisplayClass9_0<IServiceProvider>,
+      Method: Microsoft.Extensions.Options.IConfigureOptions`1[Polly.Registry.ResiliencePipelineRegistryOptions`1[Microsoft.Extensions.Http.Resilience.Internal.HttpKey]] Configure(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: ResilienceHttpClientBuilderExtensions.Marker,
+    ImplementationType: ResilienceHttpClientBuilderExtensions.Marker,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IConfigureOptions<ResiliencePipelineRegistryOptions<HttpKey>>,
+    ImplementationInstance: {
+      Name: ,
+      Action: {
+        Type: Action<ResiliencePipelineRegistryOptions<HttpKey>>,
+        Target: ResilienceHttpClientBuilderExtensions.<>c,
+        Method: Void ConfigureHttpServices(Polly.Registry.ResiliencePipelineRegistryOptions`1[Microsoft.Extensions.Http.Resilience.Internal.HttpKey])
+      }
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IExceptionSummarizer,
+    ImplementationType: ExceptionSummarizer,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IExceptionSummaryProvider,
+    ImplementationType: HttpExceptionSummaryProvider,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IConfigureOptions<TelemetryOptions>,
+    ImplementationInstance: {
+      Name: ,
+      Action: {
+        Type: Action<TelemetryOptions>,
+        Target: ResilienceHttpClientBuilderExtensions.<>c,
+        Method: Void ConfigureHttpServices(Polly.Telemetry.TelemetryOptions)
+      }
+    },
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IConfigureOptions<HttpClientFactoryOptions>,
+    ImplementationInstance: {
+      Name: IImageMetadataService,
+      Action: {
+        Type: Action<HttpClientFactoryOptions>,
+        Target: HttpClientBuilderExtensions.<>c__DisplayClass3_0,
+        Method: Void AddHttpMessageHandler(Microsoft.Extensions.Http.HttpClientFactoryOptions)
+      }
+    },
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: ICorsService,
+    ImplementationType: CorsService,
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Transient,
+    ServiceType: ICorsPolicyProvider,
+    ImplementationType: DefaultCorsPolicyProvider,
+    IsKeyedService: false
+  },
+  {
+    ServiceType: IConfigureOptions<CorsOptions>,
+    ImplementationInstance: {
+      Name: ,
+      Action: {
+        Type: Action<CorsOptions>,
+        Target: ServiceConfigurator.<>c,
+        Method: Void ConfigureServices(Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions)
+      }
+    },
+    IsKeyedService: false
+  }
+]

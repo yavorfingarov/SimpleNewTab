@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="options.css">
+    <title>New tab options</title>
+</head>
+<body>
+    <div class="flex">
+        <div class="flex justify-center align-center tab-header active" data-content-selector="#options">
+            <div>Options</div>
+        </div>
+        <div class="flex justify-center align-center tab-header" data-content-selector="#help">
+            <div>Help</div>
+        </div>
+    </div>
+    <div class="tab-content" id="options">
+        <h2>Shortcuts</h2>
+        <textarea id="shortcuts" spellcheck="false"></textarea>
+        <div id="save-button">Save</div>
+        <p id="error"></p>
+    </div>
+    <div class="tab-content hidden" id="help">
+        <h2>About</h2>
+        <p>
+            SimpleNewTab is a lightweight browser extension designed for efficiency and simplicity. 
+            It allows users to set shortcuts for their favorite websites. Additionally, SimpleNewTab 
+            fetches the daily Bing picture, providing a fresh background each day. With its minimalist 
+            design and privacy-friendly approach, SimpleNewTab streamlines the browsing experience 
+            without unnecessary clutter.
+        </p>
+        <h2>Privacy</h2>
+        <p>
+            This extension does not and will never collect any user information.
+        </p>
+        <h2>Support</h2>
+        <p>
+            For bug reports and feature requests, please use the 
+            <a href="https://github.com/yavorfingarov/SimpleNewTab/issues">issue tracker</a>. 
+            For questions, ideas and other topics, please check the 
+            <a href="https://github.com/yavorfingarov/SimpleNewTab/discussions">discussions</a>.
+        </p>
+    </div>
+    <script src="common.js"></script>
+    <script src="options.js"></script>
+</body>
+</html>

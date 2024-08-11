@@ -1,0 +1,48 @@
+﻿{
+  Type: ValidationException,
+  Errors: [
+    {
+      PropertyName: Images,
+      ErrorMessage: 'Images' must contain exactly one element.,
+      AttemptedValue: [
+        {
+          Url: /image.jpg,
+          Title: Test title,
+          Quiz: /quiz,
+          Copyright: Some author,
+          CopyrightLink: https://some-author.com
+        },
+        {
+          Url: /image.jpg,
+          Title: Test title,
+          Quiz: /quiz,
+          Copyright: Some author,
+          CopyrightLink: https://some-author.com
+        }
+      ],
+      ErrorCode: PredicateValidator,
+      FormattedMessagePlaceholderValues: {
+        PropertyName: Images,
+        PropertyValue: [
+          {
+            Url: /image.jpg,
+            Title: Test title,
+            Quiz: /quiz,
+            Copyright: Some author,
+            CopyrightLink: https://some-author.com
+          },
+          {
+            Url: /image.jpg,
+            Title: Test title,
+            Quiz: /quiz,
+            Copyright: Some author,
+            CopyrightLink: https://some-author.com
+          }
+        ]
+      }
+    }
+  ],
+  Message:
+Validation failed: 
+ -- Images: 'Images' must contain exactly one element. Severity: Error
+}

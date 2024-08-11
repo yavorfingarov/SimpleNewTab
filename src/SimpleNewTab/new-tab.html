@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="new-tab.css">
+    <link rel="icon" type="image/svg" href="icons/browser-scaled.png">
+    <title>New tab</title>
+</head>
+<body>
+    <div class="fill-viewport" id="shadow"></div>
+    <div class="flex justify-space-between fill-viewport">
+        <div id="left-placeholder"></div>
+        <div class="flex direction-column justify-end align-center">
+            <div class="flex wrap" id="shortcuts"></div>
+        </div>
+        <div class="flex direction-column justify-end" id="right-placeholder">
+            <div class="hidden" id="card">
+                <a class="no-overflow" id="title"></a>
+                <a class="no-overflow" id="copyright"></a>
+            </div>
+            <div class="flex justify-end" id="card-toggle">
+                <img class="card-toggle-icon" id="card-toggle-up" src="icons/arrow-up.svg" />
+                <img class="card-toggle-icon hidden" id="card-toggle-down" src="icons/arrow-down.svg" />
+            </div>
+        </div>
+    </div>
+    <template id="shortcut">
+        <a>
+            <div class="shortcut flex direction-column justify-center align-center">
+                <div class="icon">
+                    <img />
+                </div>
+                <div class="label no-overflow"></div>
+            </div>
+        </a>
+    </template>
+    <script src="common.js"></script>
+    <script src="new-tab.js"></script>
+</body>
+</html>

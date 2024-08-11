@@ -1,0 +1,17 @@
+﻿[
+  SimpleNewTab.Api.Features.AppInfoHeaderMiddleware,
+  SimpleNewTab.Api.Features.HealthEndpoint,
+  SimpleNewTab.Api.Features.ImageMetadataEndpoint,
+  SimpleNewTab.Api.Features.ImageMetadataFetchingJob,
+  SimpleNewTab.Api.Features.ServiceConfigurator,
+  SimpleNewTab.Api.Data.DataContext,
+  SimpleNewTab.Api.Data.MigrationJob,
+  SimpleNewTab.Api.Data.ServiceConfigurator,
+  SimpleNewTab.Api.Common.ImageMetadata,
+  SimpleNewTab.Api.Bing.BingConfiguration,
+  SimpleNewTab.Api.Bing.BingService,
+  SimpleNewTab.Api.Bing.ImageArchiveDto,
+  SimpleNewTab.Api.Bing.ImageDto,
+  SimpleNewTab.Api.Bing.ImageArchiveDtoMapper,
+  SimpleNewTab.Api.Bing.ImageArchiveDtoValidator
+]

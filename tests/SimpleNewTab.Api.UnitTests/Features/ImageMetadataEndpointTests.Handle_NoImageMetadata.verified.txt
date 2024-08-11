@@ -1,0 +1,30 @@
+﻿{
+  target: {
+    Type: UnreachableException,
+    Message: Could not get random image metadata.
+  },
+  ef: [
+    {
+      Type: ReaderExecuted,
+      HasTransaction: false,
+      Parameters: {
+        @__now_0 (Int64): 1307825123328000000
+      },
+      Text:
+SELECT "i"."Expiration", "i"."Copyright", "i"."CopyrightUrl", "i"."QuizUrl", "i"."Title", "i"."Url"
+FROM "ImageMetadata" AS "i"
+WHERE "i"."Expiration" > @__now_0
+ORDER BY "i"."Expiration" DESC
+LIMIT 1
+    },
+    {
+      Type: ReaderExecuted,
+      HasTransaction: false,
+      Text:
+SELECT "i"."Expiration", "i"."Copyright", "i"."CopyrightUrl", "i"."QuizUrl", "i"."Title", "i"."Url"
+FROM "ImageMetadata" AS "i"
+ORDER BY abs(random() / 9.2233720368547799E+18)
+LIMIT 1
+    }
+  ]
+}

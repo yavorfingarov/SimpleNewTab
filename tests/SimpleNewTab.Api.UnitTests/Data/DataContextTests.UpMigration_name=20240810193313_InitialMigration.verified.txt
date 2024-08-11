@@ -1,0 +1,21 @@
+﻿CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+
+BEGIN TRANSACTION;
+
+CREATE TABLE "ImageMetadata" (
+    "Expiration" INTEGER NOT NULL CONSTRAINT "PK_ImageMetadata" PRIMARY KEY,
+    "Url" TEXT NOT NULL,
+    "Title" TEXT NOT NULL,
+    "QuizUrl" TEXT NOT NULL,
+    "Copyright" TEXT NOT NULL,
+    "CopyrightUrl" TEXT NOT NULL
+);
+
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20240810193313_InitialMigration', '8.0.7');
+
+COMMIT;
+

@@ -1,0 +1,33 @@
+﻿[
+  {
+    ServiceType: ServiceProviderAccessor,
+    ImplementationType: ServiceProviderAccessor,
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Scoped,
+    ServiceType: DbContextOptions<DataContext>,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, object>,
+      Target: EntityFrameworkServiceCollectionExtensions.<>c__DisplayClass17_0<DataContext>,
+      Method: System.Object AddCoreServices(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Scoped,
+    ServiceType: DbContextOptions,
+    ImplementationFactory: {
+      Type: Func<IServiceProvider, object>,
+      Target: EntityFrameworkServiceCollectionExtensions.<>c__17<DataContext>,
+      Method: System.Object AddCoreServices(System.IServiceProvider)
+    },
+    IsKeyedService: false
+  },
+  {
+    Lifetime: Scoped,
+    ServiceType: DataContext,
+    ImplementationType: DataContext,
+    IsKeyedService: false
+  }
+]

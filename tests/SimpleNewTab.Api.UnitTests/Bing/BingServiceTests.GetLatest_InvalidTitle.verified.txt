@@ -1,0 +1,19 @@
+﻿{
+  Type: ValidationException,
+  Errors: [
+    {
+      PropertyName: Images[0].Title,
+      ErrorMessage: 'Title' must not be empty.,
+      AttemptedValue:  ,
+      ErrorCode: NotEmptyValidator,
+      FormattedMessagePlaceholderValues: {
+        CollectionIndex: 0,
+        PropertyName: Title,
+        PropertyValue:  
+      }
+    }
+  ],
+  Message:
+Validation failed: 
+ -- Images[0].Title: 'Title' must not be empty. Severity: Error
+}
