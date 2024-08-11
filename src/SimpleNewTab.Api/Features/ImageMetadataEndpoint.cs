@@ -12,7 +12,8 @@ namespace SimpleNewTab.Api.Features
             var imageMetadata = dataContext.ImageMetadata
                 .AsNoTracking()
                 .Where(x => x.Expiration > now)
-                .FirstOrDefault();
+                .OrderBy(x => x.Expiration)
+                .LastOrDefault();
             if (imageMetadata != null)
             {
                 return imageMetadata;

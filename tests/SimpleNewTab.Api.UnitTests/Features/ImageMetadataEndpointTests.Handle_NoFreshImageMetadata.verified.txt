@@ -18,6 +18,7 @@
 SELECT "i"."Expiration", "i"."Copyright", "i"."CopyrightUrl", "i"."QuizUrl", "i"."Title", "i"."Url"
 FROM "ImageMetadata" AS "i"
 WHERE "i"."Expiration" > @__now_0
+ORDER BY "i"."Expiration" DESC
 LIMIT 1
     },
     {
