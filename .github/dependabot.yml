@@ -6,6 +6,10 @@ updates:
       interval: weekly
     assignees:
       - yavorfingarov
+    groups:
+      main:
+        patterns:
+          - "*"
 
   - package-ecosystem: nuget
     directory: /
@@ -13,3 +17,7 @@ updates:
       interval: weekly
     assignees:
       - yavorfingarov
+    groups:
+      main:
+        patterns:
+          - "*"
