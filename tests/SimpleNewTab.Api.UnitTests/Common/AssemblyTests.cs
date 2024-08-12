@@ -12,6 +12,7 @@ namespace SimpleNewTab.Api.UnitTests.Common
         {
             var assemblies = _Assembly
                 .GetReferencedAssemblies()
+                .Where(x => x.Name != "netstandard")
                 .Select(x => x.FullName)
                 .OrderBy(x => x);
 
@@ -70,6 +71,7 @@ namespace SimpleNewTab.Api.UnitTests.Common
         {
             return _Assembly.GetTypes()
                 .Where(x => !x.IsDefined(typeof(CompilerGeneratedAttribute)))
+                .Where(x => !x.FullName!.StartsWith("Coverlet.Core", StringComparison.InvariantCulture))
                 .Where(x => x.Namespace != "SimpleNewTab.Api.Data.Migrations")
                 .Where(predicate)
                 .Select(x => x.FullName!);
