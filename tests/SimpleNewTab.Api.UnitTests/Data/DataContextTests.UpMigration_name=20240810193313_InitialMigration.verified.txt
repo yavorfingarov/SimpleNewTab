@@ -15,7 +15,7 @@ CREATE TABLE "ImageMetadata" (
 );
 
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20240810193313_InitialMigration', '8.0.7');
+VALUES ('20240810193313_InitialMigration', '8.0.8');
 
 COMMIT;
 

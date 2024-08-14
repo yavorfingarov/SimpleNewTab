@@ -49,7 +49,6 @@ namespace SimpleNewTab.Api.UnitTests.Features
             await Verify();
         }
 
-
         [Fact]
         public async Task Run_DbImageMetadataExpired()
         {
@@ -69,8 +68,7 @@ namespace SimpleNewTab.Api.UnitTests.Features
             Hydrate(ImageMetadata("yesterday", UtcNow.AddDays(-1)));
             _ImageMetadataService.GetLatest(CancellationToken.None)
                 .Returns(ImageMetadata("today"));
-            TimeProvider.GetUtcNow()
-                .Returns(UtcNow.AddHours(8));
+            TimeProvider.SetUtcNow(UtcNow.AddHours(8));
             Recording.Start();
 
             await _ImageMetadataFetchingJob.Run(CancellationToken.None);

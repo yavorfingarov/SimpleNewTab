@@ -1,11 +1,12 @@
 ﻿using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Time.Testing;
 
 namespace SimpleNewTab.Api.UnitTests.Features
 {
     public abstract class TestBase : IDisposable
     {
         public DateTimeOffset UtcNow { get; }
-        public TimeProvider TimeProvider { get; }
+        public FakeTimeProvider TimeProvider { get; }
         public DataContext DataContext { get; }
 
         private readonly SqliteConnection _DbConnection;
@@ -13,9 +14,9 @@ namespace SimpleNewTab.Api.UnitTests.Features
         public TestBase()
         {
             UtcNow = new DateTimeOffset(2024, 8, 7, 17, 30, 0, TimeSpan.Zero);
-            TimeProvider = Substitute.For<TimeProvider>();
-            TimeProvider.GetUtcNow()
-                .Returns(UtcNow);
+            TimeProvider = new FakeTimeProvider();
+            TimeProvider.SetLocalTimeZone(TimeZoneInfo.Utc);
+            TimeProvider.SetUtcNow(UtcNow);
             _DbConnection = DbHelpers.CreateDbConnection();
             DataContext = DbHelpers.CreateDataContext(_DbConnection);
             DataContext.Database.EnsureCreated();
