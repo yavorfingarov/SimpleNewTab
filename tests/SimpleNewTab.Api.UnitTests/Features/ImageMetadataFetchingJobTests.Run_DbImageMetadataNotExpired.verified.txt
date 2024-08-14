@@ -1,0 +1,11 @@
+﻿{
+  ef: {
+    Type: ReaderExecuted,
+    HasTransaction: false,
+    Text:
+SELECT "i"."Expiration", "i"."Url"
+FROM "ImageMetadata" AS "i"
+ORDER BY "i"."Expiration" DESC
+LIMIT 1
+  }
+}

@@ -13,29 +13,33 @@ namespace SimpleNewTab.Api
                 .LoadConfigurationFromAppSettings()
                 .GetCurrentClassLogger();
             LogManager.Configuration.Install(new InstallationContext());
-            builder.Logging.ClearProviders();
-            builder.Host.UseNLog();
+            logger.Info("Application starting. Environment: {Environment} / AppInfo: {AppInfo}",
+                builder.Environment.EnvironmentName, Metadata.AppInfo);
 
             try
             {
                 Run(builder);
+                logger.Info("Application stopping gracefully.");
             }
             catch (Exception ex)
             {
                 logger.Fatal(ex, "Application could not start.");
             }
-
-            LogManager.Shutdown();
+            finally
+            {
+                LogManager.Shutdown();
+            }
         }
 
         private static void Run(WebApplicationBuilder builder)
         {
+            builder.Logging.ClearProviders();
+
+            builder.Host.UseNLog();
+
             builder.ConfigureServices();
 
             var app = builder.Build();
-
-            app.Logger.LogInformation("Application starting. Environment: {Environment} / AppInfo: {AppInfo} / Commit: {Commit}",
-                app.Environment.EnvironmentName, Metadata.AppInfo, Metadata.Commit);
 
             app.UseExceptionHandling();
 

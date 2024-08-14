@@ -71,6 +71,7 @@ namespace SimpleNewTab.Api.UnitTests.Common
         {
             return _Assembly.GetTypes()
                 .Where(x => !x.IsDefined(typeof(CompilerGeneratedAttribute)))
+                .Where(x => !x.IsAssignableTo(typeof(IAsyncStateMachine)))
                 .Where(x => !x.FullName!.StartsWith("Coverlet.Core", StringComparison.InvariantCulture))
                 .Where(x => x.Namespace != "SimpleNewTab.Api.Data.Migrations")
                 .Where(predicate)

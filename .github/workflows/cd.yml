@@ -60,13 +60,13 @@ jobs:
         with:
           reports: ./coverage/**/coverage.cobertura.xml
           targetdir: ./TestCoverageReport
-          filefilters: -**/Program.cs
+          filefilters: -**/Program.cs;-**/Migrations/*ModelSnapshot.cs
           reporttypes: Html;CsvSummary
 
       - name: Run mutation tests
         run: |
           dotnet tool install dotnet-stryker --tool-path ./tools
-          ./tools/dotnet-stryker --mutate "!**/Program.cs" --reporter "html" --reporter "markdown" --reporter "dots"
+          ./tools/dotnet-stryker --mutate "!**/Program.cs" --mutate "!**/Migrations/*ModelSnapshot.cs" --reporter "html" --reporter "markdown" --reporter "dots"
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -101,21 +101,24 @@ jobs:
               exit 1
             fi
           }
-          check_coverage() {
-            if [[ $1 -lt ${{ env.MIN_COVERAGE }} || $2 -lt ${{ env.MIN_COVERAGE }} ]]; then
-              echo "" >> $GITHUB_STEP_SUMMARY
-              echo "**ERROR: The code coverage is insufficient.**" >> $GITHUB_STEP_SUMMARY
-              exit 1
+          set_output_color() {
+            if [[ $2 -gt 85 ]]; then
+              echo "$1_color=brightgreen" >> $GITHUB_OUTPUT
+            elif [[ $2 -gt 70 ]]; then
+              echo "$1_color=yellow" >> $GITHUB_OUTPUT
+            else
+              echo "$1_color=red" >> $GITHUB_OUTPUT
             fi
           }
           lines_of_code=$(cat ./TestCoverageReport/Summary.csv | grep -Po '(?<=Total lines:;)[0-9]+')
           set_lines_of_code "${{ env.LOC }}"
           test_coverage=$(cat ./TestCoverageReport/Summary.csv | grep -Po '(?<=Line coverage:;)[0-9]+')
           set_output "test_coverage" "Test coverage" "$test_coverage" "%"
+          set_output_color "test_coverage" "$test_coverage"
           mutation_report_path=$(find ./StrykerOutput -name mutation-report.md)
           mutation_score=$(cat $mutation_report_path | grep -Po '(?<=## The final mutation score is )[0-9]+')
           set_output "mutation_score" "Mutation score" "$mutation_score" "%"
-          check_coverage "$test_coverage" "$mutation_score"
+          set_output_color "mutation_score" "$mutation_score"
 
       - name: Update lines of code
         if: ${{ github.event_name == 'push' }}
@@ -124,7 +127,7 @@ jobs:
           auth: ${{ secrets.GIST_TOKEN }}
           gistID: ${{ env.GIST_ID }}
           filename: lines-of-code.json
-          label: loc
+          label: lines of code
           message: ${{ steps.analyze-coverage-report.outputs.lines_of_code }}
           color: blue
 

@@ -16,12 +16,8 @@ namespace SimpleNewTab.Api.UnitTests.Features
             TimeProvider = Substitute.For<TimeProvider>();
             TimeProvider.GetUtcNow()
                 .Returns(UtcNow);
-            _DbConnection = new SqliteConnection("Data Source=:memory:");
-            _DbConnection.Open();
-            var dbContextOptionsBuilder = new DbContextOptionsBuilder<DataContext>();
-            dbContextOptionsBuilder.UseSqlite(_DbConnection);
-            dbContextOptionsBuilder.EnableRecording();
-            DataContext = new DataContext(dbContextOptionsBuilder.Options);
+            _DbConnection = DbHelpers.CreateDbConnection();
+            DataContext = DbHelpers.CreateDataContext(_DbConnection);
             DataContext.Database.EnsureCreated();
         }
 
