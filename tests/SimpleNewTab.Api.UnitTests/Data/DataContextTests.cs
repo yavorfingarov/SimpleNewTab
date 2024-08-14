@@ -8,7 +8,7 @@ namespace SimpleNewTab.Api.UnitTests.Data
         [Fact]
         public Task Schema()
         {
-            var dataContext = CreateDataContext();
+            using var dataContext = DbHelpers.CreateDataContext();
 
             var schema = dataContext.Database.GenerateCreateScript();
 
@@ -31,10 +31,19 @@ namespace SimpleNewTab.Api.UnitTests.Data
                 .UseParameters(name);
         }
 
+        [Fact]
+        public void NoPendingChanges()
+        {
+            using var dataContext = DbHelpers.CreateDataContext();
+            var pendingChanges = dataContext.Database.HasPendingModelChanges();
+
+            Assert.False(pendingChanges);
+        }
+
         public static TheoryData<string, string> GetMigrations(bool up)
         {
             var theoryData = new TheoryData<string, string>();
-            var dataContext = CreateDataContext();
+            using var dataContext = DbHelpers.CreateDataContext();
             var migrator = dataContext.GetService<IMigrator>();
             var migrationNames = dataContext.Database.GetMigrations();
             if (up)
@@ -59,15 +68,6 @@ namespace SimpleNewTab.Api.UnitTests.Data
             }
 
             return theoryData;
-        }
-
-        private static DataContext CreateDataContext()
-        {
-            var dbContextOptionsBuilder = new DbContextOptionsBuilder<DataContext>();
-            dbContextOptionsBuilder.UseSqlite();
-            var dataContext = new DataContext(dbContextOptionsBuilder.Options);
-
-            return dataContext;
         }
     }
 }

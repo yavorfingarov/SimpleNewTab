@@ -3,9 +3,12 @@ using Polly.Retry;
 
 namespace SimpleNewTab.Api.Features
 {
+    [RunOnStart]
     [Cron($"15 7 * * *")]
     public sealed class ImageMetadataFetchingJob : IJob
     {
+        private static readonly TimeOnly _ExpirationTime = new(7, 20);
+
         private readonly ILogger<ImageMetadataFetchingJob> _Logger;
         private readonly DataContext _DataContext;
         private readonly IImageMetadataService _ImageMetadataService;
@@ -28,8 +31,21 @@ namespace SimpleNewTab.Api.Features
 
         public async Task Run(CancellationToken cancellationToken)
         {
+            var now = _TimeProvider.GetUtcNow();
+            var latestDbImageMetadata = _DataContext.ImageMetadata
+                .AsNoTracking()
+                .OrderBy(x => x.Expiration)
+                .Select(x => new { x.Expiration, x.Url })
+                .LastOrDefault();
+            if (latestDbImageMetadata != null && latestDbImageMetadata.Expiration - now > TimeSpan.FromHours(1))
+            {
+                return;
+            }
+
             var resiliencePipeline = _ResiliencePipelineProvider.GetPipeline(nameof(ImageMetadataFetchingJob));
-            var latestImageMetadata = await resiliencePipeline.ExecuteAsync(GetLatestImageMetadata, cancellationToken);
+            var latestImageMetadata = await resiliencePipeline.ExecuteAsync(
+                async ct => await GetLatestImageMetadata(latestDbImageMetadata?.Url, now, ct),
+                cancellationToken);
             if (latestImageMetadata == null)
             {
                 _Logger.LogError("Could not fetch latest image metadata.");
@@ -42,21 +58,23 @@ namespace SimpleNewTab.Api.Features
             _Logger.LogInformation("Successfully fetched latest image metadata.");
         }
 
-        private async ValueTask<ImageMetadata?> GetLatestImageMetadata(CancellationToken cancellationToken)
+        private async ValueTask<ImageMetadata?> GetLatestImageMetadata(
+            string? latestDbImageMetadataUrl,
+            DateTimeOffset now,
+            CancellationToken cancellationToken)
         {
             var latestImageMetadata = await _ImageMetadataService.GetLatest(cancellationToken);
-            var latestDbImageMetadataUrl = _DataContext.ImageMetadata
-                .AsNoTracking()
-                .OrderBy(x => x.Expiration)
-                .Select(x => x.Url)
-                .LastOrDefault();
             if (latestImageMetadata.Url == latestDbImageMetadataUrl)
             {
                 return null;
             }
 
-            var now = _TimeProvider.GetUtcNow();
-            latestImageMetadata.Expiration = now.AddDays(1);
+            var (date, _, offset) = now;
+            latestImageMetadata.Expiration = new DateTimeOffset(date, _ExpirationTime, offset);
+            if (latestImageMetadata.Expiration < now)
+            {
+                latestImageMetadata.Expiration += TimeSpan.FromDays(1);
+            }
 
             return latestImageMetadata;
         }

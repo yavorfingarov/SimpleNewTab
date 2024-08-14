@@ -27,11 +27,34 @@ namespace SimpleNewTab.Api.UnitTests.Features
         }
 
         [Fact]
-        public async Task Run()
+        public async Task Run_DbImageMetadataNotExpired()
+        {
+            Hydrate(ImageMetadata("today", UtcNow.AddHours(2)));
+            Recording.Start();
+
+            await _ImageMetadataFetchingJob.Run(CancellationToken.None);
+
+            await Verify();
+        }
+
+        [Fact]
+        public async Task Run_NoDbImageMetadata()
+        {
+            _ImageMetadataService.GetLatest(CancellationToken.None)
+                .Returns(ImageMetadata("today"));
+            Recording.Start();
+
+            await _ImageMetadataFetchingJob.Run(CancellationToken.None);
+
+            await Verify();
+        }
+
+        [Fact]
+        public async Task Run_DbImageMetadataExpired()
         {
             Hydrate(ImageMetadata("yesterday", UtcNow.AddDays(-1)));
             _ImageMetadataService.GetLatest(CancellationToken.None)
-                .Returns(ImageMetadata("latest"));
+                .Returns(ImageMetadata("today"));
             Recording.Start();
 
             await _ImageMetadataFetchingJob.Run(CancellationToken.None);
@@ -40,10 +63,12 @@ namespace SimpleNewTab.Api.UnitTests.Features
         }
 
         [Fact]
-        public async Task Run_NoImageMetadata()
+        public async Task Run_DbImageMetadataExpired_AfterMidnight()
         {
+            Hydrate(ImageMetadata("yesterday", UtcNow.AddDays(-1)));
             _ImageMetadataService.GetLatest(CancellationToken.None)
-                .Returns(ImageMetadata("latest"));
+                .Returns(ImageMetadata("today"));
+            TimeProvider.SetUtcNow(UtcNow.AddHours(8));
             Recording.Start();
 
             await _ImageMetadataFetchingJob.Run(CancellationToken.None);
@@ -52,7 +77,7 @@ namespace SimpleNewTab.Api.UnitTests.Features
         }
 
         [Fact]
-        public async Task Run_ImageMetadataAlreadyFetched()
+        public async Task Run_DbImageMetadataExpired_AlreadyFetched()
         {
             Hydrate(ImageMetadata("today", UtcNow.AddHours(-4)));
             _ImageMetadataService.GetLatest(CancellationToken.None)
