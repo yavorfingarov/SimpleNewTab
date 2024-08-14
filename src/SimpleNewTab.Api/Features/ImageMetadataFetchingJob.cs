@@ -7,6 +7,8 @@ namespace SimpleNewTab.Api.Features
     [Cron($"15 7 * * *")]
     public sealed class ImageMetadataFetchingJob : IJob
     {
+        private static readonly TimeOnly _ExpirationTime = new(7, 20);
+
         private readonly ILogger<ImageMetadataFetchingJob> _Logger;
         private readonly DataContext _DataContext;
         private readonly IImageMetadataService _ImageMetadataService;
@@ -67,7 +69,8 @@ namespace SimpleNewTab.Api.Features
                 return null;
             }
 
-            latestImageMetadata.Expiration = now.Date.AddMinutes((7 * 60) + 20);
+            var (date, _, offset) = now;
+            latestImageMetadata.Expiration = new DateTimeOffset(date, _ExpirationTime, offset);
             if (latestImageMetadata.Expiration < now)
             {
                 latestImageMetadata.Expiration += TimeSpan.FromDays(1);

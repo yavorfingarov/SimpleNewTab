@@ -5,6 +5,8 @@ namespace SimpleNewTab.Api.Features
     [Endpoint]
     public sealed class ImageMetadataEndpoint
     {
+        private static readonly TimeSpan _RandomImageMetadataExpiration = TimeSpan.FromHours(2);
+
         [Get("/api/image-metadata/latest")]
         public static ImageMetadata Handle(DataContext dataContext, TimeProvider timeProvider)
         {
@@ -25,7 +27,7 @@ namespace SimpleNewTab.Api.Features
                 .FirstOrDefault();
             if (imageMetadata != null)
             {
-                imageMetadata.Expiration = now.AddHours(2);
+                imageMetadata.Expiration = now.Add(_RandomImageMetadataExpiration);
 
                 return imageMetadata;
             }
