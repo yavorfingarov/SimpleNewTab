@@ -1,6 +1,6 @@
 ﻿{
   target: {
-    Expiration: 2024-08-07 20:30 +0,
+    Expiration: 2024-08-07 10:15 +0,
     Url: https://www.bing.com/today-image.jpg,
     Title: today title,
     QuizUrl: https://www.bing.com/quiz/today,
@@ -11,7 +11,7 @@
     Type: ReaderExecuted,
     HasTransaction: false,
     Parameters: {
-      @__now_0 (Int64): 1307825123328000000
+      @__now_0 (Int64): 1307824367616000000
     },
     Text:
 SELECT "i"."Expiration", "i"."Copyright", "i"."CopyrightUrl", "i"."QuizUrl", "i"."Title", "i"."Url"

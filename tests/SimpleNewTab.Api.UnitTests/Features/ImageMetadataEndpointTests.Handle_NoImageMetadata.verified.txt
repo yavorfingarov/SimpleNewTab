@@ -8,7 +8,7 @@
       Type: ReaderExecuted,
       HasTransaction: false,
       Parameters: {
-        @__now_0 (Int64): 1307825123328000000
+        @__now_0 (Int64): 1307824367616000000
       },
       Text:
 SELECT "i"."Expiration", "i"."Copyright", "i"."CopyrightUrl", "i"."QuizUrl", "i"."Title", "i"."Url"

@@ -13,7 +13,7 @@ namespace SimpleNewTab.Api.UnitTests.Features
 
         public TestBase()
         {
-            UtcNow = new DateTimeOffset(2024, 8, 7, 17, 30, 0, TimeSpan.Zero);
+            UtcNow = new DateTimeOffset(2024, 8, 7, 7, 15, 0, TimeSpan.Zero);
             TimeProvider = new FakeTimeProvider();
             TimeProvider.SetLocalTimeZone(TimeZoneInfo.Utc);
             TimeProvider.SetUtcNow(UtcNow);
