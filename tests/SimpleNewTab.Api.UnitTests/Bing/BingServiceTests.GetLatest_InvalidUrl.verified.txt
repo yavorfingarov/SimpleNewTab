@@ -2,30 +2,18 @@
   Type: ValidationException,
   Errors: [
     {
-      PropertyName: Images[0].Url,
-      ErrorMessage: 'Url' must not be empty.,
+      PropertyName: Url,
+      ErrorMessage: 'Url' is not in the correct format.,
       AttemptedValue:  ,
-      ErrorCode: NotEmptyValidator,
+      ErrorCode: RegularExpressionValidator,
       FormattedMessagePlaceholderValues: {
-        CollectionIndex: 0,
         PropertyName: Url,
-        PropertyValue:  
-      }
-    },
-    {
-      PropertyName: Images[0].Url,
-      ErrorMessage: 'Url' must be a relative route.,
-      AttemptedValue:  ,
-      ErrorCode: PredicateValidator,
-      FormattedMessagePlaceholderValues: {
-        CollectionIndex: 0,
-        PropertyName: Url,
-        PropertyValue:  
+        PropertyValue:  ,
+        RegularExpression: ^/
       }
     }
   ],
   Message:
 Validation failed: 
- -- Images[0].Url: 'Url' must not be empty. Severity: Error
- -- Images[0].Url: 'Url' must be a relative route. Severity: Error
+ -- Url: 'Url' is not in the correct format. Severity: Error
 }

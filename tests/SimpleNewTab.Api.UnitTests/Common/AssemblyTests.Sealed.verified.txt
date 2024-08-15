@@ -12,6 +12,6 @@
   SimpleNewTab.Api.Bing.BingService,
   SimpleNewTab.Api.Bing.ImageArchiveDto,
   SimpleNewTab.Api.Bing.ImageDto,
-  SimpleNewTab.Api.Bing.ImageArchiveDtoMapper,
-  SimpleNewTab.Api.Bing.ImageArchiveDtoValidator
+  SimpleNewTab.Api.Bing.ImageDtoMapper,
+  SimpleNewTab.Api.Bing.ImageDtoValidator
 ]

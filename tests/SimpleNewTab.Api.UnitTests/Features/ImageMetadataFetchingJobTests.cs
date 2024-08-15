@@ -1,4 +1,5 @@
-﻿using Polly;
+﻿using NSubstitute;
+using Polly;
 using Polly.Registry;
 using Polly.Retry;
 using Polly.Testing;

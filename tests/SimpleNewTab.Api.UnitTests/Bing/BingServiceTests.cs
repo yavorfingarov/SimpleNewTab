@@ -25,8 +25,8 @@ namespace SimpleNewTab.Api.UnitTests.Bing
             _BingService = new BingService(
                 _HttpClient,
                 _BingConfiguration,
-                new ImageArchiveDtoValidator(),
-                new ImageArchiveDtoMapper(_BingConfiguration));
+                new ImageDtoValidator(),
+                new ImageDtoMapper(_BingConfiguration));
         }
 
         [Fact]

@@ -2,12 +2,11 @@
   Type: ValidationException,
   Errors: [
     {
-      PropertyName: Images[0].Copyright,
+      PropertyName: Copyright,
       ErrorMessage: 'Copyright' must not be empty.,
       AttemptedValue:  ,
       ErrorCode: NotEmptyValidator,
       FormattedMessagePlaceholderValues: {
-        CollectionIndex: 0,
         PropertyName: Copyright,
         PropertyValue:  
       }
@@ -15,5 +14,5 @@
   ],
   Message:
 Validation failed: 
- -- Images[0].Copyright: 'Copyright' must not be empty. Severity: Error
+ -- Copyright: 'Copyright' must not be empty. Severity: Error
 }

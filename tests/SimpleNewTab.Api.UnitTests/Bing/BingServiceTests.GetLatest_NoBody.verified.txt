@@ -1,5 +1,5 @@
 ﻿{
   Type: ArgumentNullException,
   Message: Value cannot be null.,
-  ParamName: imageArchiveDto
+  ParamName: imageDto
 }

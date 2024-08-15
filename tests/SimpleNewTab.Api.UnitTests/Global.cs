@@ -1,6 +1,5 @@
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.Logging;
-global using NSubstitute;
 global using SimpleNewTab.Api.Common;
 global using SimpleNewTab.Api.Data;
 global using SimpleNewTab.Api.Features;
