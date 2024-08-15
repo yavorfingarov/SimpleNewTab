@@ -6,6 +6,7 @@
         public Task Handle()
         {
             Hydrate(ImageMetadata("today", UtcNow.AddHours(3)));
+            Hydrate(ImageMetadata("duplicate today", UtcNow.AddHours(1)));
             Hydrate(ImageMetadata("yesterday", UtcNow.AddDays(-1).AddHours(-3)));
             Recording.Start();
 
@@ -18,7 +19,7 @@
         [Fact]
         public Task Handle_NoFreshImageMetadata()
         {
-            Hydrate(ImageMetadata("yesterday", UtcNow.AddDays(-1).AddHours(-3)));
+            Hydrate(ImageMetadata("yesterday", UtcNow.AddHours(-3)));
             Recording.Start();
 
             var response = ImageMetadataEndpoint.Handle(DataContext, TimeProvider);
