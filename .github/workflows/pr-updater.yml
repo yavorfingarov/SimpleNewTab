@@ -11,7 +11,7 @@ jobs:
   update:
     name: Update
     runs-on: ubuntu-latest
-    if: ${{ github.actor == "dependabot[bot]" }}
+    if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Update PR
         run: gh pr edit ${{ github.event.pull_request.number }} --title "Updated dependencies" --add-assignee ${{ github.repository_owner }}
