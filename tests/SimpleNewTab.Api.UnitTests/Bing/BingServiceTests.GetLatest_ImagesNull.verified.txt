@@ -1,17 +1,5 @@
 ﻿{
-  Type: ValidationException,
-  Errors: [
-    {
-      PropertyName: Images,
-      ErrorMessage: 'Images' must contain exactly one element.,
-      ErrorCode: PredicateValidator,
-      FormattedMessagePlaceholderValues: {
-        PropertyName: Images,
-        PropertyValue: null
-      }
-    }
-  ],
-  Message:
-Validation failed: 
- -- Images: 'Images' must contain exactly one element. Severity: Error
+  Type: ArgumentNullException,
+  Message: Value cannot be null.,
+  ParamName: imageDto
 }
