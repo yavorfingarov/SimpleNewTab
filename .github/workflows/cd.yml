@@ -59,7 +59,7 @@ jobs:
             ./tests/**/*.received.*
 
       - name: Generate test coverage report
-        uses: danielpalme/ReportGenerator-GitHub-Action@5.3.8
+        uses: danielpalme/ReportGenerator-GitHub-Action@5.3.10
         with:
           reports: ./coverage/**/coverage.cobertura.xml
           targetdir: ./TestCoverageReport
